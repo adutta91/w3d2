@@ -11,7 +11,12 @@ INSERT INTO
   users(f_name, l_name)
 VALUES
   ('John','Doe'),
-  ('Jane', 'Doe');
+  ('Jane', 'Doe'),
+  ('Adam', 'Smith'),
+  ('Sarah', 'Smith'),
+  ('George', 'Costanza'),
+  ('Jerry', 'Seinfeld'),
+  ('Cosmo', 'Kramer');
 
 
 
@@ -28,7 +33,8 @@ INSERT INTO
   questions(title, body, author_id)
 VALUES
   ('title', 'body', 1),
-  ('title2', 'body2', 2);
+  ('title2', 'body2', 2),
+  ('title3', 'body3', 2);
 
 
 
@@ -43,7 +49,12 @@ CREATE TABLE question_follows (
 INSERT INTO
   question_follows(question_id, follower_id)
 VALUES
-  (1, 1);
+  (1, 1),
+  (1, 2),
+  (2, 1),
+  (1, 3),
+  (3, 5),
+  (3, 6);
 
 
 -- REPLIES
@@ -76,4 +87,11 @@ INSERT INTO
   question_likes(user_id, question_id)
 VALUES
   (1, 2),
-  (2, 1);
+  (3, 2),
+  (5, 2),
+  (6, 1),
+  (4, 1),
+  (2, 1),
+  (4, 3),
+  (2, 3),
+  (7, 2);
