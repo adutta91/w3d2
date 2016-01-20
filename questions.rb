@@ -45,6 +45,29 @@ class Question
     QuestionFollow.most_followed_questions(n)
   end
 
+  def save
+    raise "id already exists" if @id
+    QuestionsDatabase.instance.execute(<<-SQL)
+    INSERT INTO
+      questions (title, body, author_id)
+    VALUES
+      ('#{title}', '#{body}', #{author_id})
+    SQL
+    @id = QuestionsDatabase.instance.last_insert_row_id
+  end
+
+  def update
+    raise "id does not exist" unless @id
+    QuestionsDatabase.instance.execute(<<-SQL, title, body, author_id, id)
+    UPDATE
+      questions
+    SET
+      title = ?, body = ?, author_id = ?
+    WHERE
+      id = ?
+    SQL
+  end
+
   def initialize(options)
     @id, @title, @body, @author_id =
       options.values_at('id', 'title', 'body', 'author_id')
